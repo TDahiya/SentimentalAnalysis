@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie Sentiment Analyzer</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <script>
+        const posters = [
+            {
+                title: "Movie Title 1",
+                src: "{{ url_for('static', filename='poster.webp') }}"
+            },
+            {
+                title: "Movie Title 2",
+                src: "{{ url_for('static', filename='poster2.jpg') }}"
+            },
+            {
+                title: "Movie Title 3",
+                src: "{{ url_for('static', filename='poster3.jpg') }}"
+            },
+            {
+                title: "Movie Title 4",
+                src: "{{ url_for('static', filename='poster4.jpeg') }}"
+            },
+            {
+                title: "Movie Title 5",
+                src: "{{ url_for('static', filename='poster5.jpg') }}"
+            }
+        ];
+
+        function loadRandomPoster() {
+            const randomIndex = Math.floor(Math.random() * posters.length);
+            const poster = posters[randomIndex];
+            document.getElementById('posterImage').src = poster.src;
+            document.getElementById('posterTitle').innerText = poster.title;
+        }
+
+        window.onload = loadRandomPoster; // Load a random poster when the page is loaded
+    </script>
+</head>
+<body>
+    <div class="overlay"></div>
+    <div class="container">
+        <h1 class="title">Movie Sentiment Analyzer</h1>
+        <form action="/predict" method="POST">
+            <div class="input-container">
+                <textarea name="review" placeholder="Enter your movie review here..." required></textarea>
+                <div class="poster-container">
+                    <h2 id="posterTitle">Movie Title</h2>
+                    <img src="" alt="Movie Poster" id="posterImage" class="poster">
+                    <button type="button" onclick="loadRandomPoster()">Get Another Poster</button>
+                </div>
+            </div>
+            <button type="submit">Analyze Sentiment</button>
+        </form>
+        
+        {% if review %}
+        <div class="result">
+            <h2>Review:</h2>
+            <p>{{ review }}</p>
+            <h2>Sentiment:</h2>
+            <p class="{% if sentiment == 'Positive' %}positive{% else %}negative{% endif %}">
+                {{ sentiment }}
+            </p>
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>

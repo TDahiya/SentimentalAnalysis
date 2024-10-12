@@ -1,0 +1,208 @@
+<!DOCTYPE html> 
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie Review</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <script>
+        const posters = [
+            {
+                title: "Joker: Folie à Deux",
+                src: "{{ url_for('static', filename='poster.webp') }}"
+            },
+            {
+                title: "Avatar: THE WAY OF WATER",
+                src: "{{ url_for('static', filename='poster2.jpg') }}"
+            },
+            {
+                title: "Virus",
+                src: "{{ url_for('static', filename='poster3.jpg') }}"
+            },
+            {
+                title: "U'r my Jaan",
+                src: "{{ url_for('static', filename='poster4.jpeg') }}"
+            },
+            {
+                title: "Morbius",
+                src: "{{ url_for('static', filename='poster5.jpg') }}"
+            }
+        ];
+
+        // Check local storage for the current poster index, or start with the first poster
+        let currentPosterIndex = localStorage.getItem('currentPosterIndex') ? 
+                                 parseInt(localStorage.getItem('currentPosterIndex')) : 0;
+
+        // Function to load the current poster based on index
+        function loadCurrentPoster() {
+            const currentPoster = posters[currentPosterIndex];
+            document.getElementById('posterImage').src = currentPoster.src;
+            document.getElementById('posterTitle').innerText = currentPoster.title;
+            document.getElementById('posterSrc').value = currentPoster.src;
+            document.getElementById('posterTitleHidden').value = currentPoster.title;
+        }
+
+        // Function to load the next poster
+        function loadNextPoster() {
+            currentPosterIndex = (currentPosterIndex + 1) % posters.length; // Cycle through the array
+            loadCurrentPoster();
+            localStorage.setItem('currentPosterIndex', currentPosterIndex); // Save current index in local storage
+        }
+
+        // Load the current poster when the page loads
+        window.onload = loadCurrentPoster;
+
+        // Function to handle form submission
+        function handleSubmit(event) {
+            event.preventDefault(); // Prevent the default form submission
+
+            const form = event.target;
+            const formData = new FormData(form); // Create a FormData object from the form
+
+            // Submit the form data via AJAX
+            fetch(form.action, {
+                method: form.method,
+                body: formData,
+            })
+            .then(response => response.text())
+            .then(data => {
+                // Update the DOM with the response data, if needed
+                document.querySelector('.result-below').innerHTML = data;
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+        }
+    </script>
+</head>
+<body>
+    <div class="overlay"></div>
+    <h1 class="title">Movie Review</h1>
+    <div class="container">
+        <div class="poster-container">
+            <h2 id="posterTitle">Movie Title 1</h2>
+            <img src="{{ url_for('static', filename='poster.webp') }}" alt="Movie Poster" id="posterImage" class="poster">
+            <button type="button" onclick="loadNextPoster()">Next Poster</button>
+        </div>
+        <div class="input-container">
+            <form action="/predict" method="POST">
+                <textarea name="review" placeholder="Enter your movie review here..." required style="font-family: Arial;"></textarea>
+                <input type="hidden" name="poster_src" id="posterSrc">
+                <input type="hidden" name="poster_title" id="posterTitleHidden">
+                <button type="submit">Submit Review</button>
+            </form>
+            {% if review %}
+            <div class="result-below">
+                <h2>Review:</h2>
+                <p>{{ review }}</p>
+                <h2>Sentiment:</h2>
+                <p class="{% if sentiment == 'Positive' %}positive{% else %}negative{% endif %}">
+                    {{ sentiment }}
+                </p>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+    <div class="container-writeup">
+        <h1>Movie Review Sentiment Analysis Project</h1>
+        
+        <h2>Introduction</h2>
+        <p>
+            The Movie Review Sentiment Analysis Project aims to create an interactive web application that allows users to submit reviews for movies and receive sentiment analysis on those reviews. By using the power of machine learning , this project provides classification of your sentiment about various films.
+        </p>
+        
+        <h2>Project Objectives</h2>
+        <ul>
+            <li><strong>User Engagement:</strong> To create an engaging platform where users can share their thoughts and experiences regarding movies.</li>
+            <li><strong>Sentiment Analysis:</strong> To classify user reviews as positive or negative using a machine learning model trained on a <a href="https://ai.stanford.edu/~amaas/data/sentiment/" target="_blank">substantial dataset.</a></li>
+            <li><strong>Dynamic Content:</strong> To offer a visually appealing interface that showcases various movie posters and their respective titles, enhancing user experience.</li>
+        </ul>
+    
+        <h2>Technology Stack</h2>
+        <p>The project employs a combination of front-end and back-end technologies:</p>
+        <h3>Front-End:</h3>
+        <ul style="list-style: none; padding: 0; display: flex; gap: 10px;">
+        <li>
+        <a href="https://developer.mozilla.org/en-US/docs/Web/HTML" target="_blank">
+            <img src="https://img.shields.io/badge/html5-%23E34F26.svg?style=flat&logo=html5&logoColor=white" alt="HTML5 Badge">
+        </a>
+        </li>
+        <li>
+        <a href="https://developer.mozilla.org/en-US/docs/Web/CSS" target="_blank">
+            <img src="https://img.shields.io/badge/css3-%231572B6.svg?style=flat&logo=css3&logoColor=white" alt="CSS3 Badge">
+        </a>
+        </li>
+         <li>
+        <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" target="_blank">
+            <img src="https://img.shields.io/badge/javascript-%23F7DF1E.svg?style=flat&logo=javascript&logoColor=black" alt="JavaScript Badge">
+        </a>
+         </li>
+        </ul>
+    
+        <h3>Back-End:</h3>
+        <ul style="list-style: none; padding: 0; display: flex; gap: 10px;">
+        <li>
+        <a href="https://www.python.org/" target="_blank">
+            <img src="https://img.shields.io/badge/python-%233B8EB2.svg?style=flat&logo=python&logoColor=white" alt="Python Badge">
+        </a>
+        </li>
+        <li>
+        <a href="https://flask.palletsprojects.com/" target="_blank">
+            <img src="https://img.shields.io/badge/flask-%23000000.svg?style=flat&logo=flask&logoColor=white" alt="Flask Badge">
+        </a>
+        </li>
+        <li>
+        <a href="https://scikit-learn.org/" target="_blank">
+            <img src="https://img.shields.io/badge/scikit--learn-%23F7931E.svg?style=flat&logo=scikit-learn&logoColor=white" alt="Scikit-learn Badge">
+        </a>
+        </li>
+        </ul>
+        
+        <h3>Model Accuracy</h3>
+        <p>
+            Right now accuracy of the model is 86.40% but in future updates we will make sure to make it more precise and accurate. 
+        </p>
+
+        <h3>Sentiment Classification</h3>
+        <p>
+            Once the model is trained, it is integrated into the web application. When a user submits a review, the back-end processes the text, applies the same preprocessing steps, and uses the trained model to classify the sentiment of the review. The result (positive or negative) is then displayed to the user alongside their review.
+        </p>
+    
+        <h2>User Interface</h2>
+        <p>The application features a user-friendly interface with the following components:</p>
+        <ul>
+            <li><strong>Movie Posters:</strong> A visually appealing display of movie posters that users can interact with. Users can click a button to load the next poster, enhancing engagement.</li>
+            <li><strong>Review Submission Form:</strong> A simple text area where users can enter their movie reviews. Upon submission, the review is processed, and the sentiment result is displayed below the form.</li>
+            <li><strong>Result Display:</strong> After submitting a review, the application shows the user's review and the predicted sentiment, providing immediate feedback.</li>
+        </ul>
+    
+        <h2>Future Enhancements</h2>
+        <p>The Movie Review Sentiment Analysis Project has several potential impacts:</p>
+        <ul>
+            <li><strong>Expanding Features:</strong> Future enhancements could include:
+                <ul>
+                    <li><strong>Recommendation Systems:</strong> Suggesting movies to users based on their sentiment and preferences.</li>
+                    <li><strong>Visualizations:</strong> Graphical representations of sentiments over time or by movie genre to provide deeper insights.</li>
+                </ul>
+            </li>
+        </ul>
+    
+        <h2>Conclusion</h2>
+        <p>
+            The Movie Review Sentiment Analysis Project represents a blend of technology, creativity, and user engagement. By providing an interactive platform for movie enthusiasts to express their opinions and receive immediate feedback on their sentiments, this project not only enhances the viewing experience but also contributes to the growing field of sentiment analysis and natural language processing. As the project evolves, it has the potential to foster a vibrant community of movie lovers while delivering valuable insights into audience sentiments.
+        </p>
+    </div>
+    
+    <div class="about-me">
+        <p>
+            <br>
+            This project is made by ~TanishqDahiya using <a href="https://ai.stanford.edu/~amaas/data/sentiment/" target="_blank">IMDB movie review dataset</a> provided by Stanford<br><br>
+
+            <a href="https://www.linkedin.com/in/tdahiya2845/" class="social-icon"><img width="30" height="30" src="https://img.icons8.com/ios-filled/50/fb200a/linkedin.png" alt="linkedin"/></a>
+            <a href="https://www.linkedin.com/in/tdahiya2845/"><img width="30" height="30" src="https://img.icons8.com/external-tal-revivo-bold-tal-revivo/50/fb200a/external-github-with-cat-logo-an-online-community-for-software-development-logo-bold-tal-revivo.png" alt="external-github-with-cat-logo-an-online-community-for-software-development-logo-bold-tal-revivo"/></a>
+        </p>
+
+
+    </div>
+</body>
+</html>

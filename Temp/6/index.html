@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie Review</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <script>
+        const posters = [
+            {
+                title: "Movie Title 1",
+                src: "{{ url_for('static', filename='poster.webp') }}"
+            },
+            {
+                title: "Movie Title 2",
+                src: "{{ url_for('static', filename='poster2.jpg') }}"
+            },
+            {
+                title: "Movie Title 3",
+                src: "{{ url_for('static', filename='poster3.jpg') }}"
+            },
+            {
+                title: "Movie Title 4",
+                src: "{{ url_for('static', filename='poster4.jpeg') }}"
+            },
+            {
+                title: "Movie Title 5",
+                src: "{{ url_for('static', filename='poster5.jpg') }}"
+            }
+        ];
+
+        function loadRandomPoster() {
+            const randomIndex = Math.floor(Math.random() * posters.length);
+            const currentPoster = posters[randomIndex];
+            document.getElementById('posterImage').src = currentPoster.src;
+            document.getElementById('posterTitle').innerText = currentPoster.title;
+            document.getElementById('posterSrc').value = currentPoster.src;
+            document.getElementById('posterTitleHidden').value = currentPoster.title;
+        }
+    </script>
+</head>
+<body>
+    <div class="overlay"></div>
+    <div class="container">
+        <div class="input-container">
+            <h1 class="title">Movie Review</h1>
+            <form action="/predict" method="POST">
+                <textarea name="review" placeholder="Enter your movie review here..." required></textarea>
+                <input type="hidden" name="poster_src" id="posterSrc">
+                <input type="hidden" name="poster_title" id="posterTitleHidden">
+                <button type="submit">Submit Review</button>
+            </form>
+            
+            <!-- Display the result (Review and Sentiment) under the Submit button -->
+            {% if review %}
+            <div class="result-below">
+                <h2>Review:</h2>
+                <p>{{ review }}</p>
+                <h2>Sentiment:</h2>
+                <p class="{% if sentiment == 'Positive' %}positive{% else %}negative{% endif %}">
+                    {{ sentiment }}
+                </p>
+            </div>
+            {% endif %}
+        </div>
+
+        <div class="poster-container">
+            <h2 id="posterTitle">Movie Title 1</h2>
+            <img src="{{ url_for('static', filename='poster.webp') }}" alt="Movie Poster" id="posterImage" class="poster">
+            <button type="button" onclick="loadRandomPoster()">Get Another Poster</button>
+        </div>
+    </div>
+
+    <!-- Scrollable Project Description Section -->
+    <div class="about-section">
+        <h2>About the Project</h2>
+        <p>
+            This project uses a dataset of movie reviews from IMDB to analyze and predict the sentiment of movie reviews as positive or negative. The dataset contains 50,000 highly polar movie reviews and was originally collected by <a href="https://ai.stanford.edu/~amaas/data/sentiment/" target="_blank">Andrew Maas at Stanford University</a>.
+        </p>
+        <p>
+            The dataset is widely used for training sentiment analysis models, and it consists of an even number of positive and negative reviews. This project employs machine learning techniques to classify the sentiment of user-submitted reviews based on this dataset.
+        </p>
+    </div>
+</body>
+</html>

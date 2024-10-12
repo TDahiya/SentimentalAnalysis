@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie Sentiment Analyzer</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="overlay"></div>
+    <div class="container">
+        <!-- Movie Poster Displayed Before Review -->
+        <div class="poster-section">
+            <img src="{{ url_for('static', filename='poster.webp') }}" alt="Movie Poster">
+        </div>
+
+        <h1 class="title">Movie Sentiment Analyzer</h1>
+        
+        <!-- Review Form -->
+        <form action="/predict" method="POST">
+            <textarea name="review" placeholder="Enter your movie review here..." required></textarea>
+            <button type="submit">Analyze Sentiment</button>
+        </form>
+
+        <!-- Display Result after Review is Submitted -->
+        {% if review %}
+        <div class="result">
+            <div class="review-box">
+                <h2>Review:</h2>
+                <p>{{ review }}</p>
+                <h2>Sentiment:</h2>
+                <p class="{% if sentiment == 'Positive' %}positive{% else %}negative{% endif %}">
+                    {{ sentiment }}
+                </p>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>

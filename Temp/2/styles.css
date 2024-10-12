@@ -1,0 +1,110 @@
+/* Basic styles for body */
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background: url('../static/tech-background.jpg') no-repeat center center fixed; /* Corrected path */
+    background-size: cover;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6); /* Darken the background */
+    backdrop-filter: blur(5px); /* Slight blur */
+}
+
+.container {
+    position: relative;
+    width: 60%;
+    margin: auto;
+    background-color: rgba(255, 255, 255, 0.9); /* Semi-transparent white */
+    padding: 30px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+    border-radius: 8px;
+    z-index: 1;
+}
+
+.title {
+    text-align: center;
+    color: #5a67d8;
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+}
+
+/* Form styling */
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+textarea {
+    resize: none;
+    height: 150px;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-size: 1rem;
+    margin-bottom: 20px;
+}
+
+button {
+    padding: 10px;
+    background-color: #5a67d8;
+    color: white;
+    font-size: 1rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #434aa8;
+}
+
+/* Result styling */
+.result {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.review-box h2 {
+    color: #5a67d8;
+    margin-bottom: 10px;
+}
+
+.review-box p {
+    font-size: 1.2rem;
+    line-height: 1.6;
+}
+
+.positive {
+    color: green;
+}
+
+.negative {
+    color: red;
+}
+
+/* Poster styling */
+.poster-section {
+    text-align: right;
+    margin-bottom: 20px;
+}
+
+.poster-section img {
+    max-width: 250px;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}

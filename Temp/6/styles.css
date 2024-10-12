@@ -1,0 +1,143 @@
+/* Basic reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background: url('../static/tech-background.jpg') no-repeat center center fixed;
+    background-size: cover;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+/* Overlay to give a dark tint to the background */
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1;
+}
+
+.container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    width: 80%;
+    max-width: 1200px;
+    background: rgba(255, 255, 255, 0.20);
+    padding: 30px;
+    border-radius: 8px;
+    z-index: 2;
+    backdrop-filter: blur(20px); /* To make sure it's on top of the overlay */
+}
+
+.title {
+    color: #5a67d8;
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.input-container {
+    width: 60%;
+}
+
+textarea {
+    width: 100%;
+    resize: none;
+    height: 150px;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-size: 1rem;
+    margin-bottom: 15px;
+}
+
+button {
+    padding: 12px;
+    background-color: #5a67d8;
+    color: white;
+    font-size: 1rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: 100%;
+    margin-bottom: 20px; /* Add margin below the button for spacing */
+}
+
+button:hover {
+    background-color: #434aa8;
+}
+
+/* Poster container */
+.poster-container {
+    width: 30%;
+    text-align: center;
+}
+
+.poster {
+    width: 100%;
+    max-width: 250px;
+    height: auto;
+    margin-bottom: 10px;
+}
+
+/* Result positioning below the button */
+.result-below {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.result-below h2 {
+    color: #5a67d8;
+    margin-bottom: 10px;
+}
+
+.result-below p {
+    font-size: 1.2rem;
+    line-height: 1.6;
+}
+
+/* Positive and Negative sentiment color */
+.positive {
+    color: green;
+}
+
+.negative {
+    color: red;
+}
+
+/* Scrollable 'About the Project' Section */
+.about-section {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 20px;
+    text-align: center;
+    font-size: 1rem;
+    z-index: 2;
+}
+
+.about-section a {
+    color: #5a67d8;
+    text-decoration: none;
+}
+
+.about-section a:hover {
+    text-decoration: underline;
+}

@@ -1,0 +1,111 @@
+/* Basic styles for body */
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background: url('../static/tech-background.jpg') no-repeat center center fixed; /* Adjust path if necessary */
+    background-size: cover;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6); /* Darken the background */
+    backdrop-filter: blur(5px); /* Slight blur */
+}
+
+.container {
+    position: relative;
+    width: 70%; /* Adjust width as needed */
+    margin: auto;
+    background-color: rgba(255, 255, 255, 0.9); /* Semi-transparent white */
+    padding: 30px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+    border-radius: 8px;
+    z-index: 1;
+}
+
+.title {
+    text-align: center;
+    color: #5a67d8;
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+.input-container {
+    display: flex; /* Change to flex for side-by-side layout */
+}
+
+textarea {
+    resize: none;
+    height: 150px;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-size: 1rem;
+    margin-right: 20px; /* Add space between textarea and poster */
+    flex: 1; /* Allow textarea to take available space */
+}
+
+.poster-container {
+    flex: 0 0 200px; /* Fixed width for the poster */
+    text-align: center;
+}
+
+.poster {
+    max-width: 100%; /* Make the image responsive */
+    height: auto;
+    border-radius: 5px;
+    margin-top: 10px; /* Space between title and image */
+}
+
+button {
+    padding: 10px;
+    background-color: #5a67d8;
+    color: white;
+    font-size: 1rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 10px; /* Add space between buttons */
+}
+
+button:hover {
+    background-color: #434aa8;
+}
+
+.result {
+    margin-top: 20px;
+}
+
+.result h2 {
+    color: #5a67d8;
+    margin-bottom: 10px;
+}
+
+.result p {
+    font-size: 1.2rem;
+    line-height: 1.6;
+}
+
+.positive {
+    color: green;
+}
+
+.negative {
+    color: red;
+}

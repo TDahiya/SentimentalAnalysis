@@ -1,0 +1,153 @@
+/* Basic reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #121212;  /* Dark background */
+    color: #fff; /* White text */
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    background: #1a1a1a; /* Darker background to match the theme */
+}
+
+/* Overlay */
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.85); /* Dark tint */
+    z-index: 1;
+}
+
+.container {
+    display: flex;
+    justify-content: space-between;
+    width: 80%;
+    max-width: 1200px;
+    background: rgba(255, 0, 0, 0.1); /* Slight red transparency */
+    padding: 30px;
+    border-radius: 8px;
+    z-index: 2;
+    backdrop-filter: blur(10px);
+}
+
+/* Poster container */
+.poster-container {
+    width: 30%;
+    text-align: center;
+}
+
+.poster {
+    width: 100%;
+    max-width: 250px;
+    height: auto;
+    border: 2px solid #ff0000; /* Red border for the poster */
+    margin-bottom: 15px;
+}
+
+.poster-container h2 {
+    color: #ff0000; /* Red title for the poster */
+    font-size: 1.5rem;
+}
+
+button {
+    padding: 10px;
+    background-color: #ff0000; /* Red button */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: 100%;
+}
+
+button:hover {
+    background-color: #d40000; /* Darker red on hover */
+}
+
+.title {
+    color: #ff0000; /* Red color for the main title */
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+}
+
+.input-container {
+    width: 60%;
+}
+
+textarea {
+    width: 100%;
+    resize: none;
+    height: 150px;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ff0000; /* Red border for the text area */
+    background-color: #1a1a1a; /* Darker background */
+    color: white; /* White text */
+    font-size: 1rem;
+    margin-bottom: 15px;
+}
+
+button {
+    padding: 12px;
+    background-color: #ff0000;
+    color: white;
+    font-size: 1rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: 100%;
+    margin-bottom: 20px; /* Add margin below the button for spacing */
+}
+
+.result-below h2 {
+    color: #ff0000;
+    margin-bottom: 10px;
+}
+
+.result-below p {
+    font-size: 1.2rem;
+    line-height: 1.6;
+}
+
+/* Positive and Negative sentiment color */
+.positive {
+    color: #00ff00; /* Green for positive sentiment */
+}
+
+.negative {
+    color: #ff0000; /* Red for negative sentiment */
+}
+
+/* About Section */
+.about-section {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: #1a1a1a;
+    color: white;
+    padding: 20px;
+    text-align: center;
+    font-size: 1rem;
+    z-index: 2;
+}
+
+.about-section a {
+    color: #ff0000;
+    text-decoration: none;
+}
+
+.about-section a:hover {
+    text-decoration: underline;
+}
