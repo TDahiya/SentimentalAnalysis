@@ -1,6 +1,6 @@
 # Movie Review Sentiment Analysis Project
 
-## Introduction
+## Introduction 
 The Movie Review Sentiment Analysis Project aims to create an interactive web application that allows users to submit reviews for movies and receive sentiment analysis on those reviews. By using the power of machine learning, this project provides classification of your sentiment about various films.
 
 ## Project Objectives
