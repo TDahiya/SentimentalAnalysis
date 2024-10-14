@@ -45,5 +45,6 @@ The Movie Review Sentiment Analysis Project represents a blend of technology, cr
 This project is made by ~TanishqDahiya using the [IMDB movie review dataset](https://ai.stanford.edu/~amaas/data/sentiment/).
 
 ### 🌐 Socials:
-[![LinkedIn](https://user-images.githubusercontent.com/74038190/235294012-0a55e343-37ad-4b0f-924f-c8431d9d2483.gif)](https://www.linkedin.com/in/tanishq-dahiya-309681223/)
-[![Instagram](https://user-images.githubusercontent.com/74038190/235294013-a33e5c43-a01c-43f6-b44d-a406d8b4ab75.gif)](https://instagram.com/https://www.instagram.com/tanishqdahiya__/)
+<a href="https://www.linkedin.com/in/tdahiya2845/">
+  <img src="https://user-images.githubusercontent.com/74038190/235294012-0a55e343-37ad-4b0f-924f-c8431d9d2483.gif" alt="LinkedIn" width="50" height="50">
+</a>
